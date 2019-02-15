@@ -1,0 +1,11 @@
+<h1>Home</h1>
+<p id=”notice”><%= notice %></p>
+<% if current_user %>
+    Logged in as <%= current_user.email %>.
+    <%= link_to "Log Out", logout_path %>
+<% else %>
+    <%= link_to "Sign Up", signup_path %> or 
+    <%= link_to "Log In", login_path %>
+<% end %>
+<h1>Example</h1>
+<p>Lorem ipsum …</p>
