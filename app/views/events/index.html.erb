@@ -1,0 +1,13 @@
+<h1>Events Listed</h1>
+
+<% @events.each do |event| %>
+    <div>
+        <h3>Event Title : </h3> <p> <%= link_to "#{event.event_title}", event_path(event.id) %> </p>
+        <h3>Location :</h3> <p> <%= event.location %> </p>
+        <h3>Date :</h3> <p> <%= event.date %> </p>
+        <h3>Start :</h3> <p> <%= event.start_time.strftime("%I:%M %p") %> </p>
+        <h3>End : </h3> <p> <%= event.end_time.strftime("%I:%M %p") %> </p>
+        <h3> Description : </h3> <%= event.description %>
+    </div>
+    <hr>
+<% end %>

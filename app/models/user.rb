@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :authentications, dependent: :destroy
-  
   validates :email, presence: true, uniqueness: true 
-
+  
+  has_many :authentications, dependent: :destroy
+  has_many :events
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
     user = User.find_by(email: auth_hash["info"]["email"])
