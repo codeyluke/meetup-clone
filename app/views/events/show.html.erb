@@ -4,7 +4,7 @@
 
 <div>
     <h3>Event Title : </h3> <p> <%= @event.event_title %> </p>
-    <h3>Hosted By : </h3> <p> <%= link_to "#{@event.user.first_name} #{@event.user.last_name}", user_path(@event.user.id) %> </p>
+    <h3>Hosted By : </h3> <p> <%= link_to "#{@user.first_name} #{@user.last_name}", user_path(@user.id) %> </p>
     <h3>Location :</h3> <p> <%= @event.location %> </p>
     <h3>Date :</h3> <p> <%= @event.date %> </p>
     <h3>Start :</h3> <p> <%= @event.start_time.strftime("%I:%M %p") %> </p>
