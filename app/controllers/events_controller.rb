@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
     before_action :require_login
 
-    def index 
+    def index
+        @events = Event.all 
     end
     
     def new 
@@ -21,6 +22,7 @@ class EventsController < ApplicationController
     end
 
     def edit 
+        @event = Event.find(params[:id])
     end
 
     def show 
@@ -28,9 +30,17 @@ class EventsController < ApplicationController
     end
 
     def update
+        event = Event.find(params[:id])
+        event.update(event_params)
+        redirect_to event
+        flash[:success] = "Event Edited"
     end
 
-    def destroy 
+    def destroy
+        @event = Event.find(params[:id])
+        @event.destroy
+        # change the route pathfor this after building the view page
+        redirect_to root_path
     end
 
     private 
