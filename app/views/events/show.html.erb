@@ -15,3 +15,13 @@
 <hr>
 <%= link_to "Edit Event", edit_event_path(params[:id]) %>
 <%= link_to "Delete Event", event_path(params[:id]), method: :delete %>
+
+<hr>
+<%= form_with model: @attendee, url: event_attendees_path(event_id: params[:id]) , local:true do |form| %>
+    <%= form.submit "Join Event" %>
+<% end %>
+
+
+
+
+<%#= link_to "Join Event", new_event_attendee_path(params[:id]) %>

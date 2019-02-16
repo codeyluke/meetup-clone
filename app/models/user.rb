@@ -4,6 +4,8 @@ class User < ApplicationRecord
   
   has_many :authentications, dependent: :destroy
   has_many :events
+  # belongs_to :attendees
+  has_many :attendees
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
     user = User.find_by(email: auth_hash["info"]["email"])

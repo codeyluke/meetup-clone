@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :events 
-
+  resources :events do 
+    resources :attendees, only: [:create, :destroy]
+  end
   root 'home#index'
-  
 end
