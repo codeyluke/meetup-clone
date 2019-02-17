@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :events
  
   has_many :attendees
-  has_many :events, :through => :users
+  has_many :events, :through => :attendees
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
     user = User.find_by(email: auth_hash["info"]["email"])

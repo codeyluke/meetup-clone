@@ -29,7 +29,9 @@ class EventsController < ApplicationController
     def show 
         @event = Event.find(params[:id])
         @attendee = Attendee.new
-        @user = User.find(@event.creator_id)
+        @attendees = Attendee.all
+        @user = User.find(current_user.id)
+        @host = User.find(@event.creator_id)
     end
 
     def update
@@ -42,7 +44,7 @@ class EventsController < ApplicationController
     def destroy
         @event = Event.find(params[:id])
         @event.destroy
-        # change the route pathfor this after building the view page
+        # change the route path for this after building the view page
         redirect_to root_path
     end
 
