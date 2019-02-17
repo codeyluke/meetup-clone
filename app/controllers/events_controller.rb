@@ -13,7 +13,6 @@ class EventsController < ApplicationController
         event = Event.new(event_params)
         event.creator_id = current_user.id
         if event.save
-            byebug
             flash[:notice] = "Event created"
             redirect_to event_path(event)
         else

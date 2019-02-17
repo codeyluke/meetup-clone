@@ -17,3 +17,9 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<h3>Event Hosted By You</h3>
+
+<% @events.each do |event| %>
+    <%= link_to "#{event.event_title}", event_path(event.id) %> <br>
+<% end %>
