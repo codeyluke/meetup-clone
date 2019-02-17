@@ -11,8 +11,9 @@ class EventsController < ApplicationController
 
     def create 
         event = Event.new(event_params)
-        event.user_id = current_user.id
+        event.creator_id = current_user.id
         if event.save
+            byebug
             flash[:notice] = "Event created"
             redirect_to event_path(event)
         else
@@ -27,6 +28,10 @@ class EventsController < ApplicationController
 
     def show 
         @event = Event.find(params[:id])
+        @attendee = Attendee.new
+        @attendees = Attendee.all
+        @user = User.find(current_user.id)
+        @host = User.find(@event.creator_id)
     end
 
     def update
@@ -39,7 +44,7 @@ class EventsController < ApplicationController
     def destroy
         @event = Event.find(params[:id])
         @event.destroy
-        # change the route pathfor this after building the view page
+        # change the route path for this after building the view page
         redirect_to root_path
     end
 
