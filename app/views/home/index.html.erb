@@ -10,4 +10,13 @@
 <% end %>
 <p>Lorem ipsum …</p>
 
+<p>Other Users</p>
+<%= link_to "Other Users", users_path %>
+
 <%= link_to "New Event", new_event_path %>
+
+<h3>Event Hosted By You</h3>
+
+<% @events.each do |event| %>
+    <%= link_to "#{event.event_title}", event_path(event.id) %> <br>
+<% end %>
