@@ -8,7 +8,12 @@
   <%= f.submit "Search" %>
 <% end %>
 
-<% if @ten_days_before || @ten_days_after %>
+<%# if @ten_days_before || @ten_days_after %>
+<%# end %>
+
+<% if !@events.present? %>
+  <p>Sorry we do not have any events closest to the chosen date.</p>
+<% else %>
   <p>Chosen date unavailable but these are the closest dates we've got for you.</p>
 <% end %>
 
