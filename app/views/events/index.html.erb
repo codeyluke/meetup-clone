@@ -1,5 +1,17 @@
 <h1>Events Listed</h1>
 
+<%= link_to "All Events", events_path %>
+<%= simple_form_for :search, url: events_path, method: "GET" do |f| %>
+  <%= f.input :event_title, input_html: {value: ""}, placeholder: "Event Title" %>   
+  <%= f.input :description, input_html: {value: ""}, placeholder: "Event Description" %>
+  <%= f.input :date, :as => :date, html5: true, input_html: {value: ""} %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<% if @ten_days_before || @ten_days_after %>
+  <p>Chosen date unavailable but these are the closest dates we've got for you.</p>
+<% end %>
+
 <% @events.each do |event| %>
     <div>
         <h3>Event Title : </h3> <p> <%= link_to "#{event.event_title}", event_path(event.id) %> </p>

@@ -2,7 +2,28 @@ class EventsController < ApplicationController
     before_action :require_login
 
     def index
-        @events = Event.all 
+        @events = Event.all        
+        @search = params["search"]
+        if @search.present?
+            if @search["event_title"].present?
+                @event_title = @search["event_title"]
+                @events = Event.where("event_title ILIKE ?", "%#{@event_title}%")
+            end
+            if @search["description"].present?
+                @description = @search["description"]
+                @events = Event.where("description ILIKE ? ", "%#{@description}%")    
+            end
+            if @search["date"].present?
+                @date = @search["date"]
+                @events = Event.where(date: "#{@date}")
+                if !@events.present? 
+                    @events = Event.all
+                    @ten_days_before = (@date.to_date - 10).to_s
+                    @ten_days_after = (@date.to_date + 10).to_s
+                    @events = Event.where(date: "#{@ten_days_before}".."#{@ten_days_after}" )
+                end 
+            end
+        end
     end
     
     def new 
