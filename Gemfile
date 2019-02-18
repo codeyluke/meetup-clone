@@ -67,3 +67,5 @@ gem 'figaro'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+
+gem 'simple_form'
