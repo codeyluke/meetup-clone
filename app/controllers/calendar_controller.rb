@@ -14,9 +14,9 @@ class CalendarController < ApplicationController
         service = Google::Apis::CalendarV3::CalendarService.new
         service.authorization = client
         booked_event = Event.find(cookies[:event_id])
-        user = User.find(current_user.id)
-        user.added_to_google_calendar = true 
-        user.save 
+        attendee = Attendee.find_by(user_id: current_user.id, event_id: cookies[:event_id])
+        attendee.added_to_google_calendar = true 
+        attendee.save 
 
         start_date = booked_event.start_time.strftime('%FT%T')
         end_date = booked_event.end_time.strftime('%FT%T')

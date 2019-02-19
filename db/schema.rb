@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_074725) do
+ActiveRecord::Schema.define(version: 2019_02_19_101554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_074725) do
   create_table "attendees", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "event_id"
+    t.boolean "added_to_google_calendar", default: false
     t.index ["event_id"], name: "index_attendees_on_event_id"
     t.index ["user_id"], name: "index_attendees_on_user_id"
   end
