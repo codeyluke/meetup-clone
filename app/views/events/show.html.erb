@@ -1,15 +1,8 @@
 <%= render partial: 'event_show' %>
 
-<% if !@attendees.find_by(user_id: current_user.id, event_id: params[:id]) %>
-    <%= form_with model: @attendee, url: event_attendees_path(event_id: params[:id]), local:true do |form| %>
-        <%= form.submit "Join Event" %>
-    <% end %>
-<% else %>
-    <p>You are going to this event!</p>
-    <%= form_with url: event_attendee_path(event_id: params[:id], id: @attendees.find_by(user_id: @user, event_id: params[:id]).id ), method: :delete, local:true do |form| %>
-        <%= form.submit "Cancel"%>
-    <% end %>
-<% end %>
+<div id="event-join">
+    <%= render partial: 'new_join_event', :locals => { attendee: @attendee } %>
+</div>
 
 <h3>Add to your google calendar</h3>
 
