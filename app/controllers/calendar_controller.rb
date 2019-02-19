@@ -7,18 +7,17 @@ class CalendarController < ApplicationController
     def callback
         client = Signet::OAuth2::Client.new(client_options)
         client.code = params[:code]
-        
         response = client.fetch_access_token!
-        
         session[:authorization] = response
-        
         client.update!(session[:authorization])
         
         service = Google::Apis::CalendarV3::CalendarService.new
         service.authorization = client
-        
         booked_event = Event.find(cookies[:event_id])
-        
+        user = User.find(current_user.id)
+        user.added_to_google_calendar = true 
+        user.save 
+
         start_date = booked_event.start_time.strftime('%FT%T')
         end_date = booked_event.end_time.strftime('%FT%T')
     
@@ -31,7 +30,7 @@ class CalendarController < ApplicationController
     
         service.insert_event(current_user.email, booked_event)
     
-        redirect_to user_path(current_user.id)
+        redirect_to event_path(cookies[:event_id])
         flash[:primary] = "Event added to your calendar!"
     end
     
