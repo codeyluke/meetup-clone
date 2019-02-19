@@ -20,6 +20,10 @@
 
 <h3>Event Hosted By You</h3>
 
-<% @events.each do |event| %>
-    <%= link_to "#{event.event_title}", event_path(event.id) %> <br>
+<% if @events.present? %>
+  <% @events.each do |event| %>
+      <%= link_to "#{event.event_title}", event_path(event.id) %> <br>
+  <% end %>
+<% else %>
+  <p>You have not hosted any events yet. Would you like to <%= link_to "Add Event", new_event_path %> ?</p>
 <% end %>
