@@ -18,6 +18,7 @@ class EventsController < ApplicationController
                 @events = Event.where(date: "#{@date}")
                 if !@events.present? 
                     @events = Event.all
+                    @attendees = Attendee.all
                     @ten_days_before = (@date.to_date - 10).to_s
                     @ten_days_after = (@date.to_date + 10).to_s
                     @events = Event.where(date: "#{@ten_days_before}".."#{@ten_days_after}" )
