@@ -13,4 +13,8 @@
 
 <h3>Add to your google calendar</h3>
 
-<%= link_to "Add to your calendar" , redirect_path(params[:id]) %>
+<% if current_user.added_to_google_calendar == true %>
+    <p>Added to your calendar!</p>
+<% else %>
+    <%= link_to "Add to your calendar" , redirect_path(params[:id]) %>
+<% end %>
