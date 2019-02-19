@@ -31,8 +31,12 @@ class EventsController < ApplicationController
     end
 
     def create 
+        # byebug
         event = Event.new(event_params)
         event.creator_id = current_user.id
+        # event.start_time.to_date = event.date
+        # event.end_time.to_date = event.date
+
         if event.save
             flash[:notice] = "Event created"
             redirect_to event_path(event)
