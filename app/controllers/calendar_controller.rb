@@ -1,6 +1,5 @@
 class CalendarController < ApplicationController
     def redirect 
-        byebug
         client = Signet::OAuth2::Client.new(client_options)
         cookies[:event_id] = params[:event_id]
         redirect_to client.authorization_uri.to_s
