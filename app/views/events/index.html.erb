@@ -19,11 +19,11 @@
         <h3>Event Title : </h3> <p> <%= link_to "#{event.event_title}", event_path(event.id) %> </p>
         <h3>Location :</h3> <p> <%= event.location %> </p>
         
-        <% if event.start_time.strftime("%d-%m-%Y") == event.end_time.strftime("%d-%m-%Y") %>
-            <h3>Date :</h3> <p> <%= event.start_time.strftime("%d-%m-%Y") %> </p>
+        <% if event.start_time.strftime("%m-%d-%Y") == event.end_time.strftime("%m-%d-%Y") %>
+            <h3>Date :</h3> <p> <%= event.start_time.strftime("%m-%d-%Y") %> </p>
         <% else %>
-            <h3>Date from:</h3> <p> <%= event.start_time.strftime("%d-%m-%Y") %> </p>
-            <h3>Date till:</h3> <p> <%= event.end_time.strftime("%d-%m-%Y") %> </p>
+            <h3>Date from:</h3> <p> <%= event.start_time.strftime("%m-%d-%Y") %> </p>
+            <h3>Date till:</h3> <p> <%= event.end_time.strftime("%m-%d-%Y") %> </p>
         <% end %>
 
         <h3>Start :</h3> <p> <%= event.start_time.strftime("%I:%M %p") %> </p>
