@@ -1,8 +1,39 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-    content "validation tests" do 
+    context "validation tests" do 
+        ########################################### HAPPY ###########################################
+        it "ensure presence of title" do 
+            event = Event.new(location: "location", description: "describe", start_time: Time.now, end_time: Time.now).save
+            expect(event).to eq(false)
+        end
+
+        it "ensure presence of start_time" do 
+            event = Event.new(event_title: "title", location: "location", description: "describe", end_time: Time.now).save
+            expect(event).to eq(false)    
+        end
+
+        it "ensure presence of end_time" do 
+            event = Event.new(event_title: "title", location: "location", description: "describe", start_time: Time.now).save
+            expect(event).to eq(false)
+        end
+
+        it "ensure presence of location" do 
+            event = Event.new(event_title: "title", description: "describe", start_time: Time.now, end_time: Time.now).save
+            expect(event).to eq(false)
+        end
         
+        it "ensure presence of description" do 
+            event = Event.new(event_title: "title", location: "location", start_time: Time.now, end_time: Time.now).save
+            expect(event).to eq(false)
+        end
+
+        ########################################### EDGY ###########################################
+
+        it "ensure presence of title" do 
+            event = Event.new(event_title: "title", location: "location", description: "describe", start_time: Time.now, end_time: Time.now).save
+            expect(event).to eq(true)
+        end
     end
     
     

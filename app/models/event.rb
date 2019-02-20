@@ -1,6 +1,11 @@
 class Event < ApplicationRecord
     has_many :attendees
     has_many :users, :through => :attendees
+    validates :event_title, presence: true
+    validates :start_time, presence: true
+    validates :end_time, presence: true
+    validates :location, presence: true
+    validates :description, presence: true
 
     def self.search_event_title(search)
         event_title = search["event_title"]
