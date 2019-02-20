@@ -95,4 +95,33 @@ RSpec.describe User, type: :model do
       expect(User.member_users.size).to eq(3)
     end
   end
+
+  context "association tests" do 
+    ########################################### HAPPY ########################################### 
+    it "user has_many attendees" do 
+      expect(User.reflect_on_association(:attendees).macro).to eq(:has_many)
+    end
+    
+    it "user has_many events" do 
+      expect(User.reflect_on_association(:events).macro).to eq(:has_many)
+    end
+    
+    it "user has_many_through attendees" do 
+      expect(User.reflect_on_association(:events).options).to eq({:through => :attendees})
+    end
+
+    ########################################### EDGY ###########################################
+
+    it "user do not has_many attendees" do 
+      expect(User.reflect_on_association(:attendees).macro).to_not eq(:belongs_to)
+    end
+
+    it "user do not has_many events" do 
+      expect(User.reflect_on_association(:events).macro).to_not eq(:many_to_many)
+    end
+
+    it "user do not has_many_through attendees" do 
+      expect(User.reflect_on_association(:events).options).to_not eq({:through => :users})
+    end
+  end
 end
