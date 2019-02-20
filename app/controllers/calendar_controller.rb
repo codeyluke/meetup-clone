@@ -4,6 +4,7 @@ class CalendarController < ApplicationController
         cookies[:event_id] = params[:event_id]
         redirect_to client.authorization_uri.to_s
     end
+    
     def callback
         client = Signet::OAuth2::Client.new(client_options)
         client.code = params[:code]
