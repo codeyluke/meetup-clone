@@ -36,7 +36,6 @@ RSpec.describe Event, type: :model do
         end
     end
     
-    
     context "association tests" do 
         ########################################### HAPPY ###########################################
         it "event has_many attendees" do 
@@ -63,5 +62,27 @@ RSpec.describe Event, type: :model do
         it "event do not has_many_through attendees" do 
             expect(Event.reflect_on_association(:users).options).to_not eq({:through => :users})
         end
+    end
+
+    context "custom method" do 
+        ########################################### HAPPY ###########################################
+        
+        let (:params_1) {{event_title: "title_1", location: "location_1", description: "describe_1", start_time: Time.now, end_time: Time.now}}
+        let (:params_2) {{event_title: "title_2", location: "location_2", description: "describe_2", start_time: Time.now, end_time: Time.now}} 
+        
+        before :each do 
+            ActiveRecord::Base.connection.reset_pk_sequence!(:events) 
+        end
+
+        it "#search_event_title(search)" do 
+            event_1 = Event.new(params_1).save
+            event_2 = Event.new(params_2).save
+            event = Event.where("event_title ILIKE ? ", "title_1").first.event_title
+            expect(event).to eq("title_1")
+        end
+
+        ########################################### EDGY ###########################################
+
+   
     end
 end
