@@ -71,3 +71,5 @@ gem 'omniauth-google-oauth2'
 gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 gem 'simple_form'
+
+gem 'faker'
