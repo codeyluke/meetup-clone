@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/redirect/:event_id', to: 'calendar#redirect', as: 'redirect'
   get '/callback', to: 'calendar#callback', as: 'callback'
   
-  resources :users
+  resources :users 
   resources :sessions, only: [:new, :create, :destroy]
   resources :events do 
     resources :attendees, only: [:create, :destroy]

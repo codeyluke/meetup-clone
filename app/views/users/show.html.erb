@@ -20,10 +20,10 @@
 
 <h3>MAKE A NEW ROUTE TO SHOW "Event Hosted By You"</h3>
 
-<%# if @events.present? %>
-  <%# @events.each do |event| %>
-      <%#= link_to "#{event.event_title}", event_path(event.id) %> <br>
-  <%# end %>
-<%# else %>
-  Would you like to <%= link_to "Add Event", new_event_path %>
-<%# end %>
+<%if @events.present? %>
+  <% @events.each do |event| %>
+      <%= link_to "#{event.event_title}", event_path(event.id) %> <br>
+  <% end %>
+<% else %>
+  <p>Would you like to <%= link_to "Add Event", new_event_path %></p>
+<% end %>
