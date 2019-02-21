@@ -74,15 +74,22 @@ RSpec.describe Event, type: :model do
             ActiveRecord::Base.connection.reset_pk_sequence!(:events) 
         end
 
-        it "#search_event_title(search)" do 
+        it "#search_event_title(search) && #search_event_description(search) && search_event_date(search)" do 
             event_1 = Event.new(params_1).save
             event_2 = Event.new(params_2).save
-            event = Event.where("event_title ILIKE ? ", "title_1").first.event_title
-            expect(event).to eq("title_1")
+            events = Event.all
+            event = Event.where("event_title ILIKE ? ", "title_1")
+            expect(events.length).to_not eq(event.length)
         end
 
         ########################################### EDGY ###########################################
 
-   
+        it "EDGY #search_event_title(search) && #search_event_description(search) && search_event_date(search)" do 
+            event_1 = Event.new(params_1).save
+            event_2 = Event.new(params_2).save
+            events = Event.all
+            event = Event.where("event_title ILIKE ? ", "title_1")
+            expect(events.length).to eq(events.length)
+        end
     end
 end
