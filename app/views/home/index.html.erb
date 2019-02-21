@@ -9,8 +9,10 @@
     <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
 <% end %>
 
-<h3>Other Users</h3>
-<%= link_to "Other Users", users_path %>
+<% if current_user %>
+    <h3>Other Users</h3>
+    <%= link_to "Other Users", users_path %>
+<% end %>
 
 <h3>Create Your Own Event</h3>
 <%= link_to "New Event", new_event_path %>

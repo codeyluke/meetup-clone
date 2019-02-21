@@ -11,9 +11,9 @@
 <% if !@events.present? %>
   <p>Sorry we do not have any events closest to the chosen date.</p>
 <% else %>
-  <p>Chosen date unavailable but these are the closest dates we've got for you.</p>
+  <p>Here are the dates for our events we have currently. You may search for different dates above.</p>
 <% end %>
-<%#byebug%>
+
 <% @events.each do |event| %>
     <div>
         <h3>Event Title : </h3> <p> <%= link_to "#{event.event_title}", event_path(event.id) %> </p>
