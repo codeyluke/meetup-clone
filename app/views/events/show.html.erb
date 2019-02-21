@@ -4,14 +4,16 @@
     <%= render partial: 'new_join_event', :locals => { attendee: @attendee } %>
 </div>
 
-<h3>Add to your google calendar</h3>
+<% if current_user.authentications.present? %>
+    <h3>Add to your google calendar</h3>
 
-<% if @attendees.find_by(user_id: current_user.id, event_id: params[:id]) %>
-    <% if @attendees.find_by(user_id: current_user.id, event_id: params[:id], added_to_google_calendar: true) %>    
-        <p>Added to your calendar!</p>
+    <% if @attendees.find_by(user_id: current_user.id, event_id: params[:id]) %>
+        <% if @attendees.find_by(user_id: current_user.id, event_id: params[:id], added_to_google_calendar: true) %>    
+            <p>Added to your calendar!</p>
+        <% else %>
+            <%= link_to "Add to your calendar" , redirect_path(params[:id]) %>
+        <% end %>
     <% else %>
-        <%= link_to "Add to your calendar" , redirect_path(params[:id]) %>
+        <p>Please Join Event to add to your calendar</p>
     <% end %>
-<% else %>
-    <p>Please Join Event to add to your calendar</p>
 <% end %>
