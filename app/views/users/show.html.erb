@@ -18,12 +18,12 @@
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 
-<h3>Event Hosted By You</h3>
+<h3>MAKE A NEW ROUTE TO SHOW "Event Hosted By You"</h3>
 
-<% if @events.present? %>
-  <% @events.each do |event| %>
-      <%= link_to "#{event.event_title}", event_path(event.id) %> <br>
-  <% end %>
-<% else %>
-  <p>You have not hosted any events yet. Would you like to <%= link_to "Add Event", new_event_path %> ?</p>
-<% end %>
+<%# if @events.present? %>
+  <%# @events.each do |event| %>
+      <%#= link_to "#{event.event_title}", event_path(event.id) %> <br>
+  <%# end %>
+<%# else %>
+  Would you like to <%= link_to "Add Event", new_event_path %>
+<%# end %>

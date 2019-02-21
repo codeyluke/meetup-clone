@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @events = Event.where(creator_id: current_user.id)
+    # @events = Event.where(creator_id: current_user.id)
   end
 
   # GET /users/new
