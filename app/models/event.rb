@@ -8,17 +8,17 @@ class Event < ApplicationRecord
     validates :description, presence: true
 
     def self.search_event_title(search)
-        event_title = search["event_title"]
-        Event.where("event_title ILIKE ?", "%#{event_title}%")   
+        event_title = search["event_title"] || search
+        Event.where("event_title ILIKE ?", "%#{event_title}%" )   
     end
 
     def self.search_event_description(search)
-        description = search["description"]
+        description = search["description"] || search
         events = Event.where("description ILIKE ? ", "%#{description}%")        
     end
 
     def self.search_event_date(search)
-        date = search["date"]
+        date = search["date"] || search
         events = Event.where(start_date: "#{date}")
     end
     
